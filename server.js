@@ -21,6 +21,20 @@ app.post('/usuarios', async (req, res) => {
     res.status(201).json(req.body)
 })
 
+app.put('/usuarios/edit/id:', async (req, res) => {
+    
+    await prisma.user.edit({
+        data: {
+            name: req.body.name,
+            age: req.body.age,
+            email: req.body.email
+        }
+        
+    })
+
+    res.status(201).json(req.body)
+})
+
 app.get('/usuarios',  async (req, res) => {
 
     const users = await prisma.user.findMany()
